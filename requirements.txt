@@ -1,0 +1,4 @@
+wfdb>=4.1
+neurokit2>=0.2.10
+numpy
+scipy

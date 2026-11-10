@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heartform</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="stage" aria-label="A luminous 3D form drawn from one person's ECG"></canvas>
+
+<div class="ui" id="ui">
+  <header class="corner tl">
+    <h1>Heartform</h1>
+    <p>Six hearts, read in depth and played as sound.</p>
+  </header>
+
+  <p class="corner tr mono" id="subject-line"></p>
+
+  <div class="corner bl">
+    <p class="label mono">Subject</p>
+    <nav class="people" id="people" aria-label="Choose a person"></nav>
+  </div>
+
+  <p class="readout mono" id="readout" aria-live="off"></p>
+
+  <div class="corner br actions">
+    <button type="button" class="act primary" id="listen" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span id="listen-label">Listen</span></button>
+    <button type="button" class="act" id="reading-btn" aria-expanded="false" aria-controls="reading">Reading</button>
+  </div>
+
+  <p class="hint mono" id="hint">Drag to turn · 1–6 person · Space listen · R reading · headphones recommended</p>
+</div>
+
+<aside class="reading" id="reading" hidden aria-labelledby="rd-h">
+  <div class="rd-head">
+    <div>
+      <p class="label mono">Reading</p>
+      <h2 id="rd-h">Subject</h2>
+      <p class="rd-sub mono" id="rd-sub"></p>
+    </div>
+    <button type="button" class="act" id="reading-close">Close</button>
+  </div>
+
+  <figure class="rd-fig">
+    <canvas id="rd-beat" aria-label="Median beat of both leads with measured boundaries"></canvas>
+    <figcaption class="mono">Median of all beats · lead II bright, second lead dim · P onset, QRS onset, J point, T peak, T end</figcaption>
+  </figure>
+  <figure class="rd-fig">
+    <canvas id="rd-rr" aria-label="RR intervals over five minutes"></canvas>
+    <figcaption class="mono">RR interval of every beat over 5 minutes · the slow waves are breathing</figcaption>
+  </figure>
+
+  <div id="rd-tables"></div>
+
+  <p class="rd-foot">Data: MIT-BIH Arrhythmia Database (Moody &amp; Mark 2001) via PhysioNet (Goldberger et al. 2000), ODC Attribution License. Five-minute windows of normal sinus beats, analysed with <span class="mono">extract.py</span>. An art and learning piece, not a medical assessment.</p>
+</aside>
+
+<script src="data.js"></script>
+<script src="drone.js"></script>
+<script src="form.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
